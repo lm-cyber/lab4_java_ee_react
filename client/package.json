@@ -1,0 +1,60 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env APP_ENV=development webpack serve",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "@hookform/error-message": "^2.0.1",
+    "@hookform/resolvers": "^2.9.10",
+    "@jetbrains/ring-ui": "^5.x",
+    "@reduxjs/toolkit": "^1.9.0",
+    "rc-slider": "^10.1.0",
+    "react-dom": "^18.x",
+    "react-hook-form": "^7.39.5",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.3",
+    "react-toolbox": "^2.0.0-beta.13",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@faker-js/faker": "^7.6.0",
+    "@types/react": "^18.x",
+    "@types/react-dom": "^18.x",
+    "@types/webpack": "^5.1.4",
+    "babel-loader": "^8.2.4",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.28.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.0",
+    "postcss-loader": "^6.2.1",
+    "react": "^18.x",
+    "react-jsx": "^1.0.0",
+    "sass": "^1.50.0",
+    "sass-loader": "^12.6.0",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "no-unused-expressions": 0
+    }
+  }
+}

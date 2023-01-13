@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "./dist",
+    "target": "es6",
+    "module": "es6",
+    "jsx": "react-jsx",
+    "noImplicitAny": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "es6",
+      "dom"
+    ]
+  },
+}
