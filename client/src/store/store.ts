@@ -2,9 +2,11 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {hitAPI} from "../api/hitsService";
 import {userAPI} from "../api/authService";
 import coordinatesReducer from "./reducers/FormCoordinatesSlice";
+import currentPageReducer from "./reducers/CurrentPageSlice";
 
 const rootReducer = combineReducers({
     coordinatesReducer,
+    currentPageReducer,
     [hitAPI.reducerPath]: hitAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
 })

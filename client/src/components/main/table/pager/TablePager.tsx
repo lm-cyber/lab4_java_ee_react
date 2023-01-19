@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import Pager from "@jetbrains/ring-ui/dist/pager/pager";
 import {HitResultItem} from "../body/HitsTable";
 
@@ -6,27 +6,35 @@ import {HitResultItem} from "../body/HitsTable";
 interface PagerProps {
     dataSlice: HitResultItem[];
     dataCount: number;
-    currentPage: number;
-    setPage: (page: number) => void;
+    onPageChange: (page: number) => void;
     rowsPerPage: number;
 }
 
-const TablePager = ({dataSlice, dataCount, currentPage, setPage, rowsPerPage}: PagerProps) => {
+const TablePager = ({dataSlice, dataCount, onPageChange, rowsPerPage}: PagerProps) => {
+    const [page, setPage] = useState(1);
+
+    const changePage = (page: number) => {
+        setPage(page);
+        onPageChange(page);
+    }
+
     useEffect(() => {
-        if (dataSlice.length < 1 && currentPage !== 1) {
-            setPage(currentPage - 1);
+        // console.log(`Pager effect. data slice length: ${dataSlice.length}; page: ${page}`)
+        if (dataSlice.length < 1 && page !== 1) {
+            changePage(page - 1);
         }
-    }, [dataSlice, currentPage, setPage]);
+    }, [dataSlice, page]);
 
     return (
         <Pager
             total={dataCount}
             disablePageSizeSelector
             pageSize={rowsPerPage}
-            currentPage={currentPage}
-            onPageChange={setPage}
+            currentPage={page}
+            onPageChange={changePage}
         />
     );
 }
+const MemoTablePager = memo(TablePager);
 
-export default TablePager;
+export default MemoTablePager;

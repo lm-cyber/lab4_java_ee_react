@@ -7,3 +7,11 @@ export interface HitResult {
     hitTime: string;
     executionTimeMicros: number;
 }
+
+export interface ListResponse<T> {
+    page: number
+    perPage: number
+    total: number
+    totalPages: number
+    data: T[]
+}

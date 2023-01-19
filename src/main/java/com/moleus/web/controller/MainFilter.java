@@ -3,6 +3,7 @@ package com.moleus.web.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
@@ -20,6 +21,11 @@ public class MainFilter implements Filter {
         String path = req.getRequestURI().substring(req.getContextPath().length());
 
         log.info("New request to {}", path);
+        if (path.equals("/login")) {
+            ((HttpServletResponse) response).sendRedirect("/");
+            return;
+        }
+
         chain.doFilter(request, response);
     }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import {useAppSelector} from "../../../hooks/redux";
 import {hitAPI} from "../../../api/hitsService";
 import normalizer from "./util/normalizer";
-import {HitResult} from "../../../api/types/HitResult";
+import {HitResult} from "../../../api/types/response";
 import {Coordinates, DotColor, IndexedPoint} from "./util/types/canvasPoint";
 import AxisCanvas from "./AxisCanvas";
 
@@ -17,7 +17,8 @@ const CanvasContainer = () => {
     const INIT_PX_PER_UNIT = 50;
     const RADIUS_PX = 2 * INIT_PX_PER_UNIT;
 
-    const {data: hits} = hitAPI.useFetchAllHitsQuery();
+    const {page, sortReverse} = useAppSelector(state => state.currentPageReducer);
+    const {data: hits} = hitAPI.useFetchHitsQuery({page, perPage: 17, sortReverse: sortReverse});
     const [sendHit, {}] = hitAPI.useCreateHitMutation({fixedCacheKey: 'shared-create-hit'});
     const {scaleRadius} = useAppSelector(state => state.coordinatesReducer);
 
@@ -25,11 +26,11 @@ const CanvasContainer = () => {
 
     const handleClick = (event: React.MouseEvent<SVGSVGElement>) => {
         const {x, y} = fromPxToUnits({x: event.nativeEvent.offsetX, y: event.nativeEvent.offsetY}, scaleRadius);
-        sendHit({x, y, r: scaleRadius});
+        sendHit({x, y, r: scaleRadius, time: (new Date).toLocaleString()});
     }
 
-    const convertPoints = () => hits ? hits.map((h: HitResult) => mapHitToPoint(h, scaleRadius, fromUnitsToPx)) : []
-    const scaledPxPerUnit = () => Math.min(INIT_PX_PER_UNIT * scaleRadius, SIZE);
+    const convertPoints = () => hits?.data ? hits.data.map((h: HitResult) => mapHitToPoint(h, scaleRadius, fromUnitsToPx)) : []
+    const scaledPxPerUnit = () => Math.min(INIT_PX_PER_UNIT, SIZE);
 
     return (
         <section className="grid-section" id="canvas-container">

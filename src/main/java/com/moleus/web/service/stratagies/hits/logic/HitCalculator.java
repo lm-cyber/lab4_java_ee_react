@@ -8,6 +8,8 @@ import jakarta.ejb.LocalBean;
 import jakarta.ejb.Singleton;
 import jakarta.inject.Inject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @LocalBean
@@ -17,8 +19,9 @@ public class HitCalculator implements Calculator<HitCoordinatesDto, HitResult> {
     private Graph shapesGraph;
 
     @Override
-    public HitResult runCalculation(HitCoordinatesDto coordinates) {
-        var startDate = new Date();
+    public HitResult runCalculation(HitCoordinatesDto coordinates) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("M/dd/yyyy, hh:mm:ss a");
+        Date date = sdf.parse(coordinates.getTime());
         var startTimeNano = System.nanoTime();
         var hitResult = new HitResult();
 
@@ -32,7 +35,7 @@ public class HitCalculator implements Calculator<HitCoordinatesDto, HitResult> {
         hitResult.setY(coordinates.getY());
         hitResult.setR(coordinates.getR());
         hitResult.setExecutionTimeMicros(executionTimeMicros);
-        hitResult.setHitTime(startDate);
+        hitResult.setHitTime(date);
         return hitResult;
     }
 }

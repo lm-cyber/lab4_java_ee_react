@@ -15,4 +15,6 @@ public class HitCoordinatesDto implements GenericDto {
     private float y;
     @NotBlank
     private float r;
+    @NotBlank
+    private String time;
 }

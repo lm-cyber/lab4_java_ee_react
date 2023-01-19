@@ -9,7 +9,7 @@ const normalizer = ({canvasSizePx, pxPerRadius}: NormalizerProps) => {
     const fromPxToUnits = (position: Coordinates, radiusScale: number): Coordinates => {
         const centered = shiftToAxisCenter(position)
         const scaled = scalePosition(centered)
-        return {x: scaled.x / radiusScale, y: scaled.y / radiusScale}
+        return {x: scaled.x * radiusScale, y: scaled.y * radiusScale}
     }
 
     const shiftToAxisCenter = (position: Coordinates): Coordinates => {
@@ -26,8 +26,8 @@ const normalizer = ({canvasSizePx, pxPerRadius}: NormalizerProps) => {
     }
 
     const scaleToPx = (units: Coordinates, radiusScale: number) => {
-        const xPx = units.x * pxPerRadius * radiusScale
-        const yPx = units.y * pxPerRadius * radiusScale
+        const xPx = units.x * pxPerRadius / radiusScale
+        const yPx = units.y * pxPerRadius / radiusScale
         return {x: xPx, y: yPx}
     }
     return {fromPxToUnits, fromUnitsToPx};

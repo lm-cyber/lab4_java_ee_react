@@ -7,13 +7,10 @@ import Selection, {SelectionItem} from '@jetbrains/ring-ui/dist/table/selection'
 
 interface TablePageProps {
     columns: Column<SelectionItem>[];
-    onSort: (params: SortParams) => void;
-    sortOrder: boolean;
-    sortKey: string;
     data: HitResultItem[];
 }
 
-const TablePage = ({columns, onSort, sortOrder, sortKey, data}: TablePageProps) => {
+const TablePage = ({columns, data}: TablePageProps) => {
     return (
         <Table
             data={data}
@@ -21,10 +18,6 @@ const TablePage = ({columns, onSort, sortOrder, sortKey, data}: TablePageProps) 
             renderEmpty={() => 'No data'}
             selectable={false}
             selection={new Selection({})}
-
-            sortKey={sortKey}
-            sortOrder={sortOrder}
-            onSort={onSort}
         />
     );
 }

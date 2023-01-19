@@ -36,8 +36,10 @@ public class HitResource {
 
     @GET
     @Path("/")
-    public Response getHits(@QueryParam("version") String version) {
-        var result = getHitsAction.execute(version);
+    public Response getHits(@QueryParam("page") @DefaultValue(value = "1") int page,
+                            @QueryParam("per_page") @DefaultValue(value = "17") int perPage,
+                            @QueryParam("sort_reverse") @DefaultValue(value = "true") boolean sortReverse) {
+        var result = getHitsAction.execute(page, perPage, sortReverse);
         return RestUtil.fromActionResult(result);
     }
 }

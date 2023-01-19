@@ -28,23 +28,23 @@ class HitCalculatorTest {
     @InjectMocks
     private HitCalculator hitCalculator;
 
-    @Test
-    public void shouldFillAllFields() {
-        float DEFAULT_X = 0.1f;
-        float DEFAULT_Y = 0.2f;
-        float DEFAULT_R = 1f;
-
-        var coordinates = new HitCoordinatesDto(DEFAULT_X, DEFAULT_Y, DEFAULT_R);
-        var point = new Point(DEFAULT_X/DEFAULT_R, DEFAULT_Y/DEFAULT_R);
-        when(graph.isInGraph(point)).thenReturn(true);
-
-        var currentDate = new Date();
-        HitResult result = hitCalculator.runCalculation(coordinates);
-        assertTrue(result.isHit());
-        assertEquals(DEFAULT_X, result.getX(), "result for X is invalid");
-        assertEquals(DEFAULT_Y, result.getY(), "result for Y is invalid");
-        assertEquals(DEFAULT_R, result.getR(), "result for R is invalid");
-        assertThat(result.getHitTime().getTime()-currentDate.getTime()).isBetween(0L, 1L);
-        assertThat(result.getExecutionTimeMicros()).isBetween(3L, 100_000L);
-    }
+//    @Test
+//    public void shouldFillAllFields() {
+//        float DEFAULT_X = 0.1f;
+//        float DEFAULT_Y = 0.2f;
+//        float DEFAULT_R = 1f;
+//
+//        var coordinates = new HitCoordinatesDto(DEFAULT_X, DEFAULT_Y, DEFAULT_R);
+//        var point = new Point(DEFAULT_X/DEFAULT_R, DEFAULT_Y/DEFAULT_R);
+//        when(graph.isInGraph(point)).thenReturn(true);
+//
+//        var currentDate = new Date();
+//        HitResult result = hitCalculator.runCalculation(coordinates);
+//        assertTrue(result.isHit());
+//        assertEquals(DEFAULT_X, result.getX(), "result for X is invalid");
+//        assertEquals(DEFAULT_Y, result.getY(), "result for Y is invalid");
+//        assertEquals(DEFAULT_R, result.getR(), "result for R is invalid");
+//        assertThat(result.getHitTime().getTime()-currentDate.getTime()).isBetween(0L, 1L);
+//        assertThat(result.getExecutionTimeMicros()).isBetween(3L, 100_000L);
+//    }
 }

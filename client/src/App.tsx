@@ -4,7 +4,6 @@ import MainPage from "./pages/MainPage";
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import RequireAuth from "./components/auth/RequireAuth";
 import NotFoundPage from "./pages/NotFoundPage";
-import Theme, {ThemeProvider} from "@jetbrains/ring-ui/dist/global/theme";
 
 
 const router = createBrowserRouter(createRoutesFromElements(

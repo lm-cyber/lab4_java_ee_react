@@ -5,7 +5,6 @@ export const columns: Column<HitResultItem>[] = [
     {
         id: "id",
         title: "id",
-        sortable: true,
         className: "table-column",
     },
     {
@@ -30,11 +29,9 @@ export const columns: Column<HitResultItem>[] = [
     {
         id: "hitTime",
         title: "Date",
-        sortable: true
     },
     {
         id: "executionTimeMicros",
         title: "execution Time",
-        sortable: true
     }
 ]

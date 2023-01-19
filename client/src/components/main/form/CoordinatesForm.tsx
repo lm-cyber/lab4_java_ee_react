@@ -34,7 +34,7 @@ const CoordinatesForm = () => {
 
     const onSubmit = handleSubmit((data: FormValues) => {
         onUpdateR(data.r);
-        createHit({x: data.x, y: data.y, r: data.r})
+        createHit({x: data.x, y: data.y, r: data.r, time: (new Date).toLocaleString()})
     });
 
     const onReset = () => deleteHits();
@@ -46,17 +46,17 @@ const CoordinatesForm = () => {
             <TabTrap>
                 <form id="input-form">
                     <ValidatedInput label="X" error={errors.x}>
-                        <input className={`ring-input ${errors.y && "ring-input_error"} ring-input-size_m`}
+                        <input maxLength={3} className={`ring-input ${errors.y && "ring-input_error"} ring-input-size_m`}
                                {...register("x", {required: true, min: -4.9, max: 4.9})}/>
                     </ValidatedInput>
 
                     <ValidatedInput label="Y" error={errors.y}>
-                        <input className={`ring-input ${errors.y && "ring-input_error"} ring-input-size_m`}
+                        <input maxLength={3} className={`ring-input ${errors.y && "ring-input_error"} ring-input-size_m`}
                                {...register("y", {required: true, min: -4.9, max: 2.9})}/>
                     </ValidatedInput>
 
                     <ValidatedInput label="R" error={errors.r}>
-                        <input className={`ring-input ${errors.r && "ring-input_error"} ring-input-size_m`}
+                        <input maxLength={3} className={`ring-input ${errors.r && "ring-input_error"} ring-input-size_m`}
                                {...register("r", {
                                    required: true,
                                    min: 0.1,
