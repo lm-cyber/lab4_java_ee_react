@@ -22,7 +22,7 @@ public class MainFilter implements Filter {
 
         log.info("New request to {}", path);
         if (path.equals("/login")) {
-            ((HttpServletResponse) response).sendRedirect("/");
+            ((HttpServletResponse) response).sendRedirect("/");// костыль? нет
             return;
         }
 
